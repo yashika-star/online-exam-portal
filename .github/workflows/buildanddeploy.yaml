@@ -1,8 +1,40 @@
+# name: Build and Push to ACR
+# on:
+#   push:
+#     branches:
+#       - dev
+# jobs:
+#   build:
+#     name: 'Build and Push to ACR'
+#     runs-on: ubuntu-latest
+
+#     defaults:
+#       run:
+#         shell: bash
+
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+
+#       - name: Docker Login
+#         uses: azure/docker-login@v1
+#         with:
+#           login-server: ${{ secrets.ACR_URL }}
+#           username: ${{ secrets.ACR_USERNAME }}
+#           password: ${{ secrets.ACR_PASSWORD }}
+
+#       - name: Build and Push to ACR
+#         uses: docker/build-push-action@v2
+#         with:
+#           push: true
+#           tags: ${{ secrets.ACR_URL }}/backend:latest
+#           file: backend/Dockerfile
 name: Build and Push to ACR
 on:
   push:
     branches:
       - dev
+
 jobs:
   build:
     name: 'Build and Push to ACR'
@@ -29,3 +61,12 @@ jobs:
           push: true
           tags: ${{ secrets.ACR_URL }}/backend:latest
           file: backend/Dockerfile
+
+      - name: Set AKS Cluster Context
+        uses: azure/aks-set-context@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          cluster-name: testcluster
+          resource-group: testrg
+      - name: Deploy to AKS
+        run: kubectl apply -f backend/deployment.yaml

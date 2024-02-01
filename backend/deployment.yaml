@@ -13,7 +13,7 @@ spec:
         app: examportal-backend
     spec:
       containers:
-        - name: examportal-backend
-          image: your-docker-image-name:your-tag
+        - name: backend
+          image: nginx:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 80
