@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-portal-frontend
+spec:
+  replicas: 3  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: admin-portal-frontend
+  template:
+    metadata:
+      labels:
+        app: admin-portal-frontend
+    spec:
+      containers:
+        - name: admin-portal-frontend
+          image: your-docker-image-name:your-tag
+          ports:
+            - containerPort: 3000

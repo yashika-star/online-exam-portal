@@ -10,3 +10,4 @@ RUN npm install
 
 
 CMD ["sh", "-c", "npm run start"]
+
