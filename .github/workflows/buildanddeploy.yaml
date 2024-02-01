@@ -2,7 +2,7 @@ name: Build and Push to ACR
 on:
   push:
     branches:
-      - 'dev'
+      - dev
 jobs:
   build:
     name: 'Build and Push to ACR'
@@ -27,5 +27,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: test
+          tags: ${{ secrets.ACR_URL }}/backend:latest
           file: backend/Dockerfile
