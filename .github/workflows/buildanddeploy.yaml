@@ -68,5 +68,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           cluster-name: testcluster
           resource-group: testrg
-      - name: Deploy to AKS
+      - name: Deploy to Backend Deploy
         run: kubectl apply -f backend/deployment.yaml
+      - name: Deploy to Backed Service
+        run: kubectl apply -f backend/service.yaml
