@@ -40,9 +40,9 @@ jobs:
     name: 'Build and Push to ACR'
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        shell: bash
+    # defaults:
+    #   run:
+    #     shell: bash
 
     steps:
       - name: Checkout
