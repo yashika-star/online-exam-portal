@@ -48,6 +48,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Azure Login
+        uses: azure/login@14a755a4e2fd6dff25794233def4f2cf3f866955
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Docker Login
         uses: azure/docker-login@v1
         with:
@@ -63,12 +68,14 @@ jobs:
           file: backend/Dockerfile
 
       - name: Set AKS Cluster Context
-        uses: azure/aks-set-context@v1
+        uses: azure/aks-set-context@94ccc775c1997a3fcfbfbce3c459fec87e0ab188
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           cluster-name: testcluster
           resource-group: testrg
+
       - name: Deploy to Backend Deploy
         run: kubectl apply -f backend/deployment.yaml
+        
       - name: Deploy to Backed Service
         run: kubectl apply -f backend/service.yaml
