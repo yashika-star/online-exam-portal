@@ -44,9 +44,9 @@ jobs:
     name: 'Build and Push to ACR'
     runs-on: ubuntu-latest
 
-    # defaults:
-    #   run:
-    #     shell: bash
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - name: Checkout
@@ -59,6 +59,11 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
+      # - name: Login to azure
+      # uses: azure/login@v1
+      # with:
+      #      creds: '{"clientId":"${{ env.ARM_CLIENT_ID }}","clientSecret":"${{ env.ARM_CLIENT_SECRET }}","subscriptionId":"${{ env.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.ARM_TENANT_ID }}"}'
+      #      enable-AzPSSession: true
 
       # - name: Docker Login
       #   uses: azure/docker-login@v1
