@@ -88,14 +88,14 @@ jobs:
           file: frontend/Dockerfile
 
 
-      # - name: Deploy to Backend Deploy
-      #   run: kubectl apply -f backend/deployment.yaml
+      - name: Deploy to Backend Deploy
+        run: kubectl apply -f backend/deployment.yaml
 
-      # - name: Deploy to Backend Service
-      #   run: kubectl apply -f backend/service.yaml
+      - name: Deploy to Backend Service
+        run: kubectl apply -f backend/service.yaml
 
-      # - name: Deploy to Frontend Deploy
-      #   run: kubectl apply -f frontend/deployment.yaml
+      - name: Deploy to Frontend Deploy
+        run: kubectl apply -f frontend/deployment.yaml
 
-      # - name: Deploy to Frontend Service
-      #   run: kubectl apply -f frontend/service.yaml
+      - name: Deploy to Frontend Service
+        run: kubectl apply -f frontend/service.yaml
